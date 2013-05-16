@@ -35,7 +35,10 @@
       }
 
       #hour{
+        animation: clockwise 43200s linear infinite;
         -webkit-animation: clockwise 43200s linear infinite;
+        -moz-animation: clockwise 43200s linear infinite;
+        -o-animation: clockwise 43200s linear infinite;
       }
 
       .hand{
@@ -53,7 +56,10 @@
       }
 
       #minute{
+        animation: clockwise 3600s linear infinite;
         -webkit-animation: clockwise 3600s linear infinite;
+        -moz-animation: clockwise 3600s linear infinite;
+        -o-animation: clockwise 3600s linear infinite;
       }
 
       #minute .hand{
@@ -63,7 +69,10 @@
       }
 
       #second{
+        animation: clockwise 60s linear infinite;
         -webkit-animation: clockwise 60s linear infinite;
+        -moz-animation: clockwise 60s linear infinite;
+        -o-animation: clockwise 60s linear infinite;
       }
 
       #second .hand{
@@ -72,15 +81,64 @@
         background: cyan;
       }
 
+      @keyframes clockwise{
+        from{
+          transform: rotate(0deg);
+          -webkit-transform: rotate(0deg);
+          -moz-transform: rotate(0deg);
+          -o-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+        }
+        to{
+          transform: rotate(360deg);
+          -webkit-transform: rotate(360deg);
+          -moz-transform: rotate(360deg);
+          -o-transform: rotate(360deg);
+          -ms-transform: rotate(360deg);
+        }
+      }
+
       @-webkit-keyframes clockwise{
         from{
+          transform: rotate(0deg);
           -webkit-transform: rotate(0deg);
         }
         to{
+          transform: rotate(360deg);
           -webkit-transform: rotate(360deg);
         }
       }
+
+      @-moz-keyframes clockwise{
+        from{
+          transform: rotate(0deg);
+          -moz-transform: rotate(0deg);
+        }
+        to{
+          transform: rotate(360deg);
+          -moz-transform: rotate(360deg);
+        }
+      }
+
+      @-o-keyframes clockwise{
+        from{
+          transform: rotate(0deg);
+          -o-transform: rotate(0deg);
+        }
+        to{
+          transform: rotate(360deg);
+          -o-transform: rotate(360deg);
+        }
+      }
+
     </style>
+
+    <script>
+      var d = new Date();
+      var sec = d.getSeconds();
+      var min = d.getMinutes();
+      var hour = d.getHour();
+    </script>
 
   </head>
 
