@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    <title>Clock</title>
+
+    <style>
+      html, body{
+        margin: 0;
+        height: 100%;
+      }
+
+      #content{
+        height: 100%;
+        width: 100%;
+        position: relative;
+      }
+
+      #clock{
+        width: 30%;
+        height: auto;
+        border-radius: 50%;
+        background: black;
+        margin: -15% auto 0 auto;
+        padding-bottom: 30%;
+        position: relative;
+        top: 50%;
+      }
+
+      .handcontainer{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+      }
+
+      #hour{
+        -webkit-animation: clockwise 43200s linear infinite;
+      }
+
+      .hand{
+        height: 2%;
+        position: absolute;
+        top: 50%;
+        margin-right: 50%;
+        margin-top: -1%;
+      }
+
+      #hour .hand{
+        width: 35%;
+        margin-left: 15%;
+        background: yellow;
+      }
+
+      #minute{
+        -webkit-animation: clockwise 3600s linear infinite;
+      }
+
+      #minute .hand{
+        width: 40%;
+        margin-left: 10%;
+        background: magenta;
+      }
+
+      #second{
+        -webkit-animation: clockwise 60s linear infinite;
+      }
+
+      #second .hand{
+        width: 45%;
+        margin-left: 5%;
+        background: cyan;
+      }
+
+      @-webkit-keyframes clockwise{
+        from{
+          -webkit-transform: rotate(0deg);
+        }
+        to{
+          -webkit-transform: rotate(360deg);
+        }
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <div id="content">
+      <div id="clock">
+        <div id="second" class="handcontainer">
+          <div class="hand"></div>
+        </div>
+        <div id="minute" class="handcontainer">
+          <div class="hand"></div>
+        </div>
+        <div id="hour" class="handcontainer">
+          <div class="hand"></div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
