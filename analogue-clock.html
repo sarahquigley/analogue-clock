@@ -247,7 +247,12 @@
       }
 
       $(function() {
+        original_styles = $('#animation-stylesheet').html();
         writeRotationStylesheet();
+        $(window).on("focus", function(){ 
+          $('#animation-stylesheet').html(original_styles);
+          writeRotationStylesheet();
+        });
       });
 
     </script>
