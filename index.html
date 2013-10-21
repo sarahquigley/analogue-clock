@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    <title>Analogue Clock</title>
+
+    <style id="basic-stylesheet">
+      html, body{
+        margin: 0;
+        height: 100%;
+      }
+
+      #content{
+        height: 100%;
+        width: 100%;
+        position: relative;
+      }
+
+      #clock{
+        width: 30%;
+        height: auto;
+        border-radius: 50%;
+        background: black;
+        margin: -15% auto 0 auto;
+        padding-bottom: 30%;
+        position: relative;
+        top: 50%;
+      }
+
+      .handcontainer{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+      }
+
+      .hand{
+        width: 2%;
+        position: absolute;
+        right: 50%;
+        margin-right: -1%;
+        margin-bottom: 50%;
+      }
+
+      #hour .hand{
+        height: 35%;
+        margin-top: 15%;
+        background: yellow;
+      }
+
+      #minute .hand{
+        height: 40%;
+        margin-top: 10%;
+        background: magenta;
+      }
+
+      #second .hand{
+        height: 45%;
+        margin-top: 5%;
+        background: cyan;
+      }
+    </style>
+
+    <style id="animation-stylesheet">
+      #hour{
+        animation: clockwise 43200s linear infinite;
+        -webkit-animation: clockwise 43200s linear infinite;
+        -moz-animation: clockwise 43200s linear infinite;
+        -o-animation: clockwise 43200s linear infinite;
+      }
+
+      #minute{
+        animation: clockwise 3600s linear infinite;
+        -webkit-animation: clockwise 3600s linear infinite;
+        -moz-animation: clockwise 3600s linear infinite;
+        -o-animation: clockwise 3600s linear infinite;
+      }
+
+      #second{
+        animation: clockwise 60s linear infinite;
+        -webkit-animation: clockwise 60s linear infinite;
+        -moz-animation: clockwise 60s linear infinite;
+        -o-animation: clockwise 60s linear infinite;
+      }
+
+      @keyframes clockwise{
+        from{
+          transform: rotate(0deg);
+          -webkit-transform: rotate(0deg);
+          -moz-transform: rotate(0deg);
+          -o-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+        }
+        to{
+          transform: rotate(360deg);
+          -webkit-transform: rotate(360deg);
+          -moz-transform: rotate(360deg);
+          -o-transform: rotate(360deg);
+          -ms-transform: rotate(360deg);
+        }
+      }
+
+      @-webkit-keyframes clockwise{
+        from{
+          transform: rotate(0deg);
+          -webkit-transform: rotate(0deg);
+        }
+        to{
+          transform: rotate(360deg);
+          -webkit-transform: rotate(360deg);
+        }
+      }
+
+      @-moz-keyframes clockwise{
+        from{
+          transform: rotate(0deg);
+          -moz-transform: rotate(0deg);
+        }
+        to{
+          transform: rotate(360deg);
+          -moz-transform: rotate(360deg);
+        }
+      }
+
+      @-o-keyframes clockwise{
+        from{
+          transform: rotate(0deg);
+          -o-transform: rotate(0deg);
+        }
+        to{
+          transform: rotate(360deg);
+          -o-transform: rotate(360deg);
+        }
+      }
+    
+    </style>
+
+    <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+    <script src="https://raw.github.com/janl/mustache.js/master/mustache.js"></script>
+
+    <script id="animations-stylesheet-template" type="text/template">
+
+      #{{animation}}{
+        animation: {{animation}} {{animation_duration}}s linear infinite;
+        -webkit-animation: {{animation}} {{animation_duration}}s linear infinite;
+        -moz-animation: {{animation}} {{animation_duration}}s linear infinite;
+        -o-animation: {{animation}} {{animation_duration}}s linear infinite;
+      }
+
+      @keyframes {{animation}}{
+        from{
+          transform: rotate({{rotationStart}}deg);
+          -webkit-transform: rotate({{rotationStart}}deg);
+          -moz-transform: rotate({{rotationStart}}deg);
+          -o-transform: rotate({{rotationStart}}deg);
+          -ms-transform: rotate({{rotationStart}}deg);
+        }
+        to{
+          transform: rotate({{rotationEnd}}deg);
+          -webkit-transform: rotate({{rotationEnd}}deg);
+          -moz-transform: rotate({{rotationEnd}}deg);
+          -o-transform: rotate({{rotationEnd}}deg);
+          -ms-transform: rotate({{rotationEnd}}deg);
+        }
+      }
+
+      @-webkit-keyframes {{animation}}{
+        from{
+          transform: rotate({{rotationStart}}deg);
+          -webkit-transform: rotate({{rotationStart}}deg);
+        }
+        to{
+          transform: rotate({{rotationEnd}}deg);
+          -webkit-transform: rotate({{rotationEnd}}deg);
+        }
+      }
+
+      @-moz-keyframes {{animation}}{
+        from{
+          transform: rotate({{rotationStart}}deg);
+          -moz-transform: rotate({{rotationStart}}deg);
+        }
+        to{
+          transform: rotate({{rotationEnd}}deg);
+          -moz-transform: rotate({{rotationEnd}}deg);
+        }
+      }
+
+      @-o-keyframes {{animation}}{
+        from{
+          transform: rotate({{rotationStart}}deg);
+          -o-transform: rotate({{rotationStart}}deg);
+        }
+        to{
+          transform: rotate({{rotationEnd}}deg);
+          -o-transform: rotate({{rotationEnd}}deg);
+        }
+      }
+
+    </script>
+
+    <script>
+
+      function animationDuration(hand){
+        if (hand === "second") {
+          var duration = 60;
+        } else if (hand === "minute") {
+          var duration = 60 * 60;
+        } else if (hand === "hour") {
+          var duration = 60 * 60 * 12;
+        }
+        return duration;
+      }
+
+      function rotationStart(time, hand){
+        if (hand === "second") {
+          var deg = time.getSeconds() * 6;
+        } else if (hand === "minute") {
+          var deg = time.getMinutes() * 6;
+          deg += time.getSeconds() / 10;
+        } else if (hand == "hour") {
+          var hour = time.getHours();
+          var deg = hour < 12 ? hour * 30 : (hour - 12) * 30;
+          deg += time.getMinutes() / 2;
+        }
+        return deg;
+      }
+
+      function rotationEnd(rotationStart){
+        return rotationStart + 360;
+      }
+
+      function writeRotationStylesheet() {
+        var blank_template = $("#animations-stylesheet-template").html();
+        var time = new Date();
+        var complete_styles = "";
+
+        ["second", "minute", "hour"].forEach(function(elem){
+          var duration = animationDuration(elem);
+          var start = rotationStart(time, elem);
+          var end = rotationEnd(start);
+          var filled_template = Mustache.render(blank_template, {animation: elem, animation_duration: duration, rotationStart: start, rotationEnd: end});  
+          complete_styles = complete_styles + filled_template;
+        });
+
+        $('#animation-stylesheet').html(complete_styles);
+      }
+
+      $(function() {
+        original_styles = $('#animation-stylesheet').html();
+        writeRotationStylesheet();
+        $(window).on("focus", function(){ 
+          $('#animation-stylesheet').html(original_styles);
+          writeRotationStylesheet();
+        });
+      });
+
+    </script>
+
+  </head>
+
+  <body>
+    <div id="content">
+      <div id="clock">
+        <div id="second" class="handcontainer">
+          <div class="hand"></div>
+        </div>
+        <div id="minute" class="handcontainer">
+          <div class="hand"></div>
+        </div>
+        <div id="hour" class="handcontainer">
+          <div class="hand"></div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
