@@ -18,18 +18,24 @@
       }
 
       #clock{
-        width: 30%;
-        height: auto;
-
+        position: relative;
+        background: black;
         border-radius: 50%;
         -webkit-border-radius: 50%;
         -moz-border-radius: 50%;
-
-        background: black;
-        margin: -15% auto 0 auto;
-        padding-bottom: 30%;
-        position: relative;
         top: 50%;
+
+        width: 30%;
+        width: 60vh;
+
+        height: auto;
+        height: 60vh;
+
+        margin: -15% auto 0 auto;
+        margin: -30vh auto 0 auto;
+        
+        padding-bottom: 30%;
+        padding-bottom: 0vh;
       }
 
       .handcontainer{
@@ -68,9 +74,17 @@
 
       @media only screen and (orientation: portrait){
         #clock{
-          width: 50%;
-          margin: -25% auto 0 auto;
-          padding-bottom: 50%;
+          width: 30%;
+          width: 60vw;
+
+          height: auto;
+          height: 60vw;
+
+          margin: -15% auto 0 auto;
+          margin: -30vw auto 0 auto;
+
+          padding-bottom: 30%;
+          padding-bottom: 0vw;
         }
       }
 
