@@ -25,7 +25,9 @@ CSS3 animations keep time until the window looses focus. However, since CSS3 ani
 
 ## Why did you make this?
 
-Of course, the potential uses of this technology are endless. CSS powered wrist watch displays and time travel are just two of the exciting possibilities. But seriously, I made this for joy and for learning's sake. I'm hoping you've gotten a kick out of my little project - and maybe even learned something... Thanks for indulging a little old school time keeping!
+Of course, potential uses of this are endless. CSS powered wrist watch displays and time travel are just two of the exciting possibilities.
+
+But seriously, I made this for joy and for learning's sake. Plus, I'm hoping you've gotten a kick out of my little project - and maybe even learned something... Thanks for indulging a little old school time keeping!
 
 ## Supported Browsers
 Chrome, Firefox 5+, IE 10+, Opera 12+, Safari 4.0+.
