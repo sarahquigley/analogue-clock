@@ -20,7 +20,11 @@
       #clock{
         width: 30%;
         height: auto;
+
         border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+
         background: black;
         margin: -15% auto 0 auto;
         padding-bottom: 30%;
@@ -61,6 +65,15 @@
         height: 90%;
         background: cyan;
       }
+
+      @media only screen and (orientation: portrait){
+        #clock{
+          width: 50%;
+          margin: -25% auto 0 auto;
+          padding-bottom: 50%;
+        }
+      }
+
     </style>
 
     <style id="animation-stylesheet">
