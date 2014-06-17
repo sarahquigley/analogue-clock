@@ -3,7 +3,7 @@ Analogue Clock
 
 Old school time keeping.
 
-View live version: [Analogue Clock Live](http://sarahquigley.github.io/analogue-clock/)
+View live version: [Analogue Clock Live](http://sarahquigley.net/analogue-clock/)
 
 ## What is Analogue Clock?
 
